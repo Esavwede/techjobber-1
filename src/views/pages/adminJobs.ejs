@@ -346,15 +346,68 @@ discription:
                         console.log(' Adding CLick Event Listener to click icon ')
                         console.log( linkObject["<%= item.jobLink %>"]) 
 
-                        linkObject["<%= item.jobLink %>"].addEventListener("click",(e)=>{ copyToClipBoard(e) })
+                        linkObject["<%= item.jobLink %>"].addEventListener("click",(e)=>{ copyLinkToClipboardHandler(e) })
 
-                        function copyToClipBoard(e)
+
+
+                        async function copyLinkToClipboardHandler(e)
                         {
                             try 
                             {
+                                console.log(' Checking if copy to clipboard Supported ')
+
+                                if( navigator.clipboard )
+                                {
+                                    console.log(' Copy to clipboard supported ')
+                                    copyToClipBoard(e) 
+                                }
+                                else 
+                                {
+                                    window.alert(' This site cannot copy to clip board ')
+                                    return 
+                                }
+
+
+                            }
+                            catch(e)
+                            {
+                                console.log(' Error occured in: COPY TO CLIPBOARD HANDLER ')
+                                console.log(e) 
+                            }
+                        }
+
+
+                        async function copyToClipBoard(e)
+                        {
+                            try 
+                            {
+
+
+                                // Check Browser Permissions for Clip Board Access 
+
+                                const permissionStatus = await navigator.permissions.query({ name: "clipboard-write"})
+
+                                if( permissionStatus.state === "granted" || permissionStatus.state === "prompt" )
+                                {
+                                    window.alert('Clipboard Access Granted ')
+                                }
+                                else 
+                                {
+                                    window.alert(' Clipboard Access not granted ')
+                                    return 
+                                }
+
+                                permissionStatus.onchange = ()=>
+                                { 
+                                    window.alert(' Clipboard Permission Status Changed')
+                                    window.alert( permissionStatus.state ) 
+                                }
+
+
+
                                 console.log(" CLICKED ")
                                 var link = 'https://www.techjobber.com/jobs/<%= item._id %>'
-                                navigator.clipboard.writeText(link)
+                                await navigator.clipboard.writeText(link)
                                 window.alert('Copied !  :' + ' " ' + link + ' " ')
                             }
                             catch(e)
