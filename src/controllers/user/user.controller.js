@@ -76,6 +76,7 @@ const SignupHandler = async function(req, res, next)
         {
          
            console.log(' Signing Up new User  ') 
+           console.log(`User Type: ${ req.body.userType }`)
            
            // Validate Signup Schema 
             await validateSignupSchema( req.body ) 
@@ -108,7 +109,7 @@ const SignupHandler = async function(req, res, next)
 
            const mailVariables = 
            { firstname: req.body.firstname, emailVerificationLink: `http://${req.headers.host}/verify/email/${emailVerificationCode}`}
-           await sendMail('verifyEmail', mailDoc,mailVariables)
+           // await sendMail('verifyEmail', mailDoc,mailVariables)
 
            // Signup successfull 
            
@@ -144,10 +145,12 @@ const SignupHandler = async function(req, res, next)
                 case 'emailAlreadyRegistered':
 
                                 req.flash('signup_errors', errorMsg ) 
-                               return res.redirect('/signup')
+                                console.log('Debug: Schema Error ')
+                                const originalUrl = req.get("referer") || req.originalUrl
+                               return res.redirect( originalUrl )
 
                 default: 
-                        return res.ender('pages/serverError',{ error:'server error'})
+                        return res.render('pages/serverError',{ error:'server error'})
            }
 
         }
@@ -232,19 +235,23 @@ const signinHandler = async function(req, res, next)
         switch(userType)
         {
             case 'user': // redirect user to talent dashboard;
+                            console.log("Regular User signin")
                             return res.redirect('/dashboard')
                             break; 
 
             case 'client': // redirect user to client dashboard;
+                            console.log("Client signin")
                             return res.redirect('/client/dashboard') 
                             break; 
 
             case 'admin' : // redirect user to admin dashboard; 
+                            console.log("Admin signin")
                             res.redirect('/dashboard') 
                             return; 
                             break; 
 
             case 'superAdmin': 
+                            console.log("Super Admin signin")
                             res.redirect('/dashboard')
 
             default: // Unknown User Type 

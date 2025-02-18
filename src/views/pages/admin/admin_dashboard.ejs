@@ -27,278 +27,243 @@
 
 <body class="font-Default bg-white dark:bg-black">
 
+    <!--- BACKEND BASED CODE  -->
 
-        <!--- BACKEND BASED CODE  -->
+    <script>
 
-        <script>
+        const successMessages = document.getElementsByClassName('backend-success-message')
+        const errorMessages = document.getElementsByClassName('backend-error-message')
 
-            const successMessages = document.getElementsByClassName('backend-success-message')
-            const errorMessages = document.getElementsByClassName('backend-error-message')
-    
-    
-            
-            function clearMessages()
+
+        function clearMessages()
+        {
+            for( var i = 0; i < successMessages.length; i++ )
             {
-                for( var i = 0; i < successMessages.length; i++ )
-                {
-                    successMessages[i].remove() 
-                }
-    
-                for( var i = 0; i < errorMessages.length; i++ )
-                {
-                    errorMessages[i].remove() 
-                }
+                successMessages[i].remove() 
             }
-    
-            const waitTime = 30000
-    
-            setTimeout( clearMessages, waitTime )
-    
-    
-        </script>
-    
-        <style>
-    
-            .backend-success-message 
+
+            for( var i = 0; i < errorMessages.length; i++ )
             {
-                position: fixed;
-                top: 0; 
-                left: 0; 
-                width: 100vw;
-                height: 60px;
-                font-size: 20px; 
-                background-color: green;
-                color: white; 
-                z-index: 1000; 
+                errorMessages[i].remove() 
             }
+        }
+
+        const waitTime = 30000
+
+        setTimeout( clearMessages, waitTime )
+
+
+    </script>
+
+    <style>
+
+        .backend-success-message 
+        {
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100vw;
+            height: 60px;
+            font-size: 20px; 
+            background-color: green;
+            color: white; 
+            z-index: 1000; 
+        }
+
+        .backend-error-message 
+        {
+            position: absolute;
+            top: 0; 
+            left: 0; 
+            width: 100%;
+            height: 60px;
+            font-size: 20px; 
+            background-color: crimson;
+            color: white; 
+            z-index: fixed; 
+        }
+
+    </style>
+
+
+        <% errorMessages.forEach((item)=>{ %> 
+            <div class="backend-error-message"> <%= item %>  </div>
+        <% }) %> 
+        <% successMessages.forEach((item)=>{ %> 
+            <div class="backend-success-message"> <%= item %> </div>
+        <% }) %> 
+
+
+    <!--- /BACKEND BASED CODE   -->
+
+
     
-            .backend-error-message 
-            {
-                position: absolute;
-                top: 0; 
-                left: 0; 
-                width: 100%;
-                height: 60px;
-                font-size: 20px; 
-                background-color: crimson;
-                color: white; 
-                z-index: fixed; 
-            }
-    
-        </style>
-    
-    
-            <% errorMessages.forEach((item)=>{ %> 
-                <div class="backend-error-message"> <%= item %>  </div>
-            <% }) %> 
-            <% successMessages.forEach((item)=>{ %> 
-                <div class="backend-success-message"> <%= item %> </div>
-            <% }) %> 
-    
-    
-    
-        <!--- /BACKEND BASED CODE   -->
+<div class="sidebar bg-papayawhip">
+    <div class="logo-details">
 
+        <div class="logo_name flex "><img src="./images/TechJobber Horizontal@300x.png" alt="" width="150px"></div>
+        <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+        <li>
+            <i class='bx bx-search bg-green-600'></i>
+            <input type="text" class="bg-white text-black" placeholder="Search...">
+            <span class="tooltip">Search</span>
+        </li>
+        <li>
+            <a href="/">
+                <i class='bx bx-home'></i>
+                <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+        </li>
 
-        
-    <div class="sidebar bg-papayawhip">
-        <div class="logo-details">
+        <!-- Removed Techies Tab -->
+        <!-- <li>
+            <a href="#">
+                <i class='bx bx-user-circle'></i>
+                <span class="links_name">Techies</span>
+            </a>
+            <span class="tooltip">Techies</span>
+        </li> -->
 
-            <div class="logo_name flex "><img src="./images/TechJobber Horizontal@300x.png" alt="" width="150px"></div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav-list">
-            <li>
-                <i class='bx bx-search bg-green-600'></i>
-                <input type="text" class="bg-white text-black" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li>
-            <li>
-                <a href="/">
-                    <i class='bx bx-home'></i>
-                    <span class="links_name">Home</span>
-                </a>
-                <span class="tooltip">Home</span>
-            </li>
+        <!-- Removed Recruiters Tab -->
+        <!-- <li>
+            <a href="#">
+                <i class='bx bx-user-pin'></i>
+                <span class="links_name">Recruiters</span>
+            </a>
+            <span class="tooltip">Recruiters</span>
+        </li> -->
 
-            <li>
-                            <a href="#">
-                                <i class='bx bx-user-circle'></i>
-                                <span class="links_name">Techies</span>
-                            </a>
-                            <span class="tooltip">Techies</span>
-                        </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-user-pin'></i>
-                    <span class="links_name">Recruiters</span>
-                </a>
-                <span class="tooltip">Recruiters</span>
-            </li>
+        <li>
+            <a href="/dashboard/jobs">
+                <i class='fas fa-pencil'></i>
+                <span class="links_name">Edit Job</span>
+            </a>
+            <span class="tooltip">Edit Job</span>
+        </li>
 
-            <li>
-                <a href="/dashboard/jobs">
-                    <i class='fas fa-pencil'></i>
-                    <span class="links_name">Edit Job</span>
-                </a>
-                <span class="tooltip">Edit Job</span>
-            </li>
+        <li>
+            <a href="/dashboard/job/add">
+                <i class='bx bx-briefcase'></i>
+                <span class="links_name">Post Jobs</span> 
+            </a>
+            <span class="tooltip">Post Jobs</span>
+        </li>
 
-            <li>
+        <li>
+            <a href="#">
+                <i class='bx bx-cog'></i>
+                <span class="links_name">Setting</span>
+            </a>
+            <span class="tooltip">Setting</span>
+        </li>
 
-            
-                <a href="/dashboard/job/add">
-                    <i class='bx bx-briefcase'></i>
-                    <span class="links_name">Post Jobs</span> 
-                </a>
-                <span class="tooltip">Post Jobs</span>
-            </li>
-
-            <!-- <li>
-                <a href="#">
-                    <i class='bx bx-cart-alt'></i>
-                    <span class="links_name">Order</span>
-                </a>
-                <span class="tooltip">Order</span>
-            </li> -->
-
-            <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Setting</span>
-                </a>
-                <span class="tooltip">Setting</span>
-            </li>
-
-            <li>
-                <a href="/signout">
-                    <i class='bx bx-log-out' id="log_out"></i>
-                    <span class="links_name">Log out</span>
-                </a>
-                <span class="tooltip">Log out</span>
-            </li>
-            <li class="profile bg-white dark:bg-slate-100">
-                <div class="profile-details">
-                    <img class="rounded-full" src="/images/profile.png" alt="profileImg">
-                    <div class="name_job">
-                        <div class="name text-black"></div>
-                        <div class="job">Admin</div>
-                    </div>
+        <li>
+            <a href="/signout">
+                <i class='bx bx-log-out' id="log_out"></i>
+                <span class="links_name">Log out</span>
+            </a>
+            <span class="tooltip">Log out</span>
+        </li>
+        <li class="profile bg-white dark:bg-slate-100">
+            <div class="profile-details">
+                <img class="rounded-full" src="/images/profile.png" alt="profileImg">
+                <div class="name_job">
+                    <div class="name text-black"></div>
+                    <div class="job">Admin</div>
                 </div>
+            </div>
 
+        </li>
+    </ul>
+</div>
+
+<main class="home-section min-h-screen bg-white text-black dark:bg-black dark:text-white">
+    <div class="text"><img src="/images/TechJobber Horizontal@300x.png" alt="" width="200px"></div>
+
+    <section class="my-12 scroll-mt-10 p-3 ">
+        <ul class="flex list-none w-full flex-col items-center gap-8 sm:flex-row">
+            <li
+                class="flex w-full flex-col items-center  py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid  dark:border-white dark:bg-black sm:w-5/6">
+                <i class="fas fa-user-alt text-4xl text-green-600"></i>
+                <h3 class="mt-2 text-center text-2xl text-slate-900 p-3 dark:text-white">
+                    TOTAL USERS
+                </h3>
+                <p class="text-center text-xl text-slate-900 dark:text-white">10,000</p>
+                <p
+                    class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
+                    
+                </p>
+        
+            </li>
+        
+            <li
+                class="flex w-full flex-col items-center py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid dark:border-white dark:bg-black sm:w-5/6">
+                <i class="bx bxs-arrow-to-left text-4xl text-green-600"></i>
+                <h3 class="mt-2 text-center text-2xl text-slate-900 dark:text-white">
+                    CONTRACTS RESOLVED
+                </h3>
+                <p class="text-center text-xl text-slate-900 dark:text-white">37,229</p>
+                <p
+                    class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
+                </p>
+        
+            </li>
+        
+        
+            <li
+                class="flex w-full flex-col items-center py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid dark:border-white dark:bg-black sm:w-5/6">
+                <i class="bx bx-arrow-to-right text-4xl text-green-600"></i>
+                <h3 class="mt-2 text-center text-2xl text-slate-900 dark:text-white">
+                    PENDING CONTRACTS
+                </h3>
+                <p class="text-center text-xl text-slate-900 dark:text-white">174</p>
+                <p
+                    class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
+                    
+                </p>
+        
             </li>
         </ul>
-    </div>
+        
+        <ul class="flex list-none w-full flex-col mt-6 items-center gap-8 sm:flex-row">
+            <li
+                class="flex w-full flex-col items-center  py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid  dark:border-white dark:bg-black sm:w-5/6">
+                <i class="fas fa-paper-plane text-4xl text-green-600"></i>
+                <h3 class="mt-2 text-center text-2xl text-slate-900 p-3 dark:text-white">
+                    NEW CONTRACTS
+                </h3>
+                <p class="text-center text-xl text-slate-900 dark:text-white">928</p>
+                <p
+                    class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
 
-    <main class="home-section min-h-screen bg-white text-black dark:bg-black dark:text-white">
-        <div class="text"><img src="/images/TechJobber Horizontal@300x.png" alt="" width="200px"></div>
+                </p>
+        
+            </li>
+        
+            <li
+                class="flex w-full flex-col items-center py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid dark:border-white dark:bg-black sm:w-5/6">
+                <i class="bx bx-user-pin text-4xl text-green-600"></i>
+                <h3 class="mt-2 text-center text-2xl text-slate-900 dark:text-white">
+                    APPROVE USERS
+                </h3>
+                <p class="text-center text-xl text-slate-900 dark:text-white">74,009</p>
+                <p
+                    class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
+                    
+                </p>
+        
+            </li>
+        </ul>
+    </section>
 
-        <section class="my-12 scroll-mt-10 p-3 ">
-            <ul class="flex list-none w-full flex-col items-center gap-8 sm:flex-row">
-                <li
-                    class="flex w-full flex-col items-center  py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid  dark:border-white dark:bg-black sm:w-5/6">
-                    <i class="fas fa-user-alt text-4xl text-green-600"></i>
-                    <h3 class="mt-2 text-center text-2xl text-slate-900 p-3 dark:text-white">
-                        TOTAL USERS
-                    </h3>
-                    <p class="text-center text-xl text-slate-900 dark:text-white"></p>
-                    <p
-                        class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
-                        <a href="#" target="_blank">Details</a>
-                    </p>
-            
-                </li>
-            
-                <li
-                    class="flex w-full flex-col items-center py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid dark:border-white dark:bg-black sm:w-5/6">
-                    <i class="bx bxs-arrow-to-left text-4xl text-green-600"></i>
-                    <h3 class="mt-2 text-center text-2xl text-slate-900 dark:text-white">
-                        CONTRACTS RESOLVED
-                    </h3>
-                    <p class="text-center text-xl text-slate-900 dark:text-white"></p>
-                    <p
-                        class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
-                        <a href="#" target="_blank">Details</a>
-                    </p>
-            
-                </li>
-            
-            
-                <li
-                    class="flex w-full flex-col items-center py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid dark:border-white dark:bg-black sm:w-5/6">
-                    <i class="bx bx-arrow-to-right text-4xl text-green-600"></i>
-                    <h3 class="mt-2 text-center text-2xl text-slate-900 dark:text-white">
-                        PENDING CONTRACTS
-                    </h3>
-                    <p class="text-center text-xl text-slate-900 dark:text-white"></p>
-                    <p
-                        class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
-                        <a href="#" target="_blank">Details</a>
-                    </p>
-            
-                </li>
-            </ul>
-            
-            <ul class="flex list-none w-full flex-col mt-6 items-center gap-8 sm:flex-row">
-                <li
-                    class="flex w-full flex-col items-center  py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid  dark:border-white dark:bg-black sm:w-5/6">
-                    <i class="bx bx-repost text-4xl text-green-600"></i>
-                    <h3 class="mt-2 text-center text-2xl text-slate-900 p-3 dark:text-white">
-                        JOB POSTING
-                    </h3>
-                    <p class="text-center text-xl text-slate-900 dark:text-white"></p>
-                    <p
-                        class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
-                        <a href="#" target="_blank">Details</a></p>
-                </li>
-            
-                <li
-                    class="flex w-full flex-col items-center py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid dark:border-white dark:bg-black sm:w-5/6">
-                    <i class="bx bxs-user-detail text-4xl text-green-600"></i>
-                    <h3 class="mt-2 text-center text-2xl text-slate-900 dark:text-white">
-                        REGISTERED TECHIES
-                    </h3>
-                    <p class="text-center text-xl text-slate-900 dark:text-white"></p>
-                    <p
-                        class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
-                        <a href="#" target="_blank">Details</a>
-                    </p>
-            
-                </li>
-            
-                <li
-                    class="flex w-full flex-col items-center py-6 px-2 bg-white rounded-xl shadow-xl border-white border border-solid dark:border-white dark:bg-black sm:w-5/6">
-                    <i class="bx bx-user-check text-4xl text-green-600"></i>
-                    <h3 class="mt-2 text-center text-2xl text-slate-900 dark:text-white">
-                        REGISTERED RECRUITERS
-                    </h3>
-                    <p class="text-center text-xl text-slate-900 dark:text-white"></p>
-                    <p
-                        class="text-center p-3 border border-solid border-green-600 bg-green-600 rounded-2xl shadow-2xl hover:bg-green-500 text-lg mt-2 text-slate-900 dark:text-white">
-                        <a href="#" target="_blank">Details</a>
-                    </p>
-            
-                </li>
-            </ul>
-            
-            </section>
-            
-            
-            
+</main>
 
-
-            
-
-    </main>
-    <footer class="footer-section z-10 left-78">
-        <p>
-            <span class="nowrap"> Copyright &copy; <time id="year"></time></span>
-            <span class="nowrap">TechJobber</span>
-        </p>
-    </footer>
-
-
-
+<!-- Update JS Script -->
+<script src="/js/sidebar.js"></script>
+<script src="/js/search.js"></script>
 </body>
 
 </html>

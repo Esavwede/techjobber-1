@@ -39,13 +39,27 @@ function start () {
   try {
     console.log(' Starting Database ')
 
-    mongoose.connect(DB_URI, MONGOOSE_CONNECTION_OPTIONS)
+    mongoose.connect(DB_URI)
 
     const db = mongoose.connection
 
     db.on('connected', () => {
       console.log(' Database connection created ')
     })
+
+    db.on('connecting',()=>{ 
+      console.log("connecting to mongodb instance")
+    })
+
+    db.on('disconnecting',()=>{ 
+      console.log("disconnecting mongoose connection")
+    })
+
+    db.on('disconnected',()=>{ 
+      console.log("Mongo Connection disconnected")
+    })
+
+
 
     db.on('error', (e) => {
       console.log(' Database  Error ')

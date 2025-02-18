@@ -101,8 +101,9 @@
                     Register as a Tech Talent and Land Great Tech Jobs
                 </p>
 
-                <button class="mx-4 w-32 text-xl my-4 border text-black dark:text-white border-solid border-green-600 p-3 rounded-md hover:bg-green-600" type="submit"><a
-                        href="/signup">Register</a></button>
+                <button id="tech-talent-signup" class="mx-4 w-32 text-xl my-4 border text-black dark:text-white border-solid border-green-600 p-3 rounded-md hover:bg-green-600" type="submit">
+                    Register 
+                </button>
     
                 <hr class="mx-auto mt-3 w-full bg-black dark:bg-white" />
     
@@ -128,8 +129,9 @@
                     </p>
             
                     <button
+                        id="recruiter-signup"
                         class="mx-4 w-32 text-xl my-4 border text-black dark:text-white border-solid border-green-600 p-3 rounded-md hover:bg-green-600"
-                        type="submit"><a href="recruiter/recruiter_signup.ejs" >Register</a></button>
+                        type="submit">Register</button>
             
                     <hr class="mx-auto mt-3 w-full bg-black dark:bg-white" />
             
@@ -140,10 +142,19 @@
     
             <!-- 2nd card ends -->
     
-    
-    
         </ul>
     </section>
+
+
+    <script>
+        document.getElementById("tech-talent-signup").addEventListener("click", function() {
+            window.location.href = "/signup?userType=user";
+        });
+    
+        document.getElementById("recruiter-signup").addEventListener("click", function() {
+            window.location.href = "/signup?userType=admin";
+        });
+    </script>
 
     <!-- Main section ends -->
 </body>

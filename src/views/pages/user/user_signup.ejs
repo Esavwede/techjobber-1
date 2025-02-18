@@ -151,10 +151,6 @@
               <i class="bx bx-hide eye-icon"></i>
             </div>
 
-            <div class="field input-field">
-              <input name="certificateId" type="text" placeholder="Certificate ID" class="input text-black" />
-            </div>
-
             <!-- <div class="field input-field">
               <input type="text" placeholder="Area of Specialization" class="input text-black" />
             </div> -->
@@ -166,7 +162,7 @@
             </div> -->
   
             <!-- Added a Hidden Form Value Here to denote User Type -->
-            <input type="hidden" name="userType" value="user">
+            <input type="hidden" name="userType">
 
             <div class="field button-field">
               <button>Signup</button>
@@ -198,6 +194,28 @@
     </section>
   
     <script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Define or extract the user type dynamically (e.g., from URL params or API)
+    const urlParams = new URLSearchParams(window.location.search);
+    const userType = urlParams.get("userType") || "user"; // Default to "user" if not provided
+
+    // Find or create the hidden input field
+    let userTypeField = document.querySelector('input[name="userType"]');
+    
+    if (!userTypeField) {
+      userTypeField = document.createElement("input");
+      userTypeField.type = "hidden";
+      userTypeField.name = "userType";
+      document.querySelector("form").appendChild(userTypeField);
+    }
+
+    // Set the user type value
+    userTypeField.value = userType;
+    console.log( userTypeField.value )
+  });
+
+
       const forms = document.querySelector(".forms"),
         pwShowHide = document.querySelectorAll(".eye-icon");
 

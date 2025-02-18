@@ -9,7 +9,7 @@ const SignupSchema = JOI.object
             lastname: JOI.string().min(2).max(30).required(), 
             password: JOI.string().min(5).max(30).message('check password').required(),
             repeatPassword: JOI.ref('password'),
-            certificateId: JOI.string().min(1).required(), 
+            certificateId: JOI.string(), 
             userType: JOI.string().required() // SV
         }
     )
